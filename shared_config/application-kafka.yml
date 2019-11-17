@@ -1,0 +1,11 @@
+spring:
+  cloud:
+    stream:
+      kafka.binder:
+        brokers: ${KAFKA_BROKERS:9092}
+        autoCreateTopics: true
+        autoAddPartitions: true
+        minPartitionCount: 2
+        required-acks: 0
+
+logging.level.org.apache.kafka: error

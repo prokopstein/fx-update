@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    stream:
+      binders:
+        rabbit_binder:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: ${RABBITMQ_BROKERS}
+                port: 5672
+                username: user
+                password: bitnami
+                virtual-host: /

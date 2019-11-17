@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <springProperty name="appName" source="spring.application.name" scope="context"/>
+    <springProperty name="profile" source="spring.profiles.active" scope="context"/>
+    <springProperty name="destination" source="logstash.destination" scope="context"/>
+    <springProperty name="logstashEnabled" source="logstash.enabled" scope="context"/>
+    <springProperty name="consoleLogDisabled" source="console.log.disabled" scope="context"/>
+
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+    <if condition='!property("consoleLogDisabled").equalsIgnoreCase("true")'>
+        <then>
+            <include resource="org/springframework/boot/logging/logback/console-appender.xml"/>
+        </then>
+    </if>
+
+    <if condition='property("logstashEnabled").equalsIgnoreCase("true")'>
+        <then>
+            <appender name="STASH" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+                <destination>${destination}</destination>
+                <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+                    <customFields>
+                        {
+                        "springProfile":"${profile}",
+                        "appName":"${appName}"
+                        }
+                    </customFields>
+                </encoder>
+            </appender>
+        </then>
+    </if>
+
+    <root level="INFO">
+        <if condition='property("logstashEnabled").equalsIgnoreCase("true")'>
+            <then>
+                <appender-ref ref="STASH"/>
+            </then>
+        </if>
+        <if condition='!property("consoleLogDisabled").equalsIgnoreCase("true")'>
+            <then>
+                <appender-ref ref="CONSOLE"/>
+            </then>
+        </if>
+    </root>
+</configuration>

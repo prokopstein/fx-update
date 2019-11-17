@@ -1,0 +1,53 @@
+plugins {
+    id 'org.springframework.boot' version '2.1.8.RELEASE' apply false
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE' apply false
+    id 'idea'
+}
+
+idea {
+    project {
+        jdkName = '11'
+        languageLevel = '11'
+        vcs = 'Git'
+    }
+}
+
+allprojects {
+
+    apply plugin: 'idea'
+    apply plugin: 'java'
+
+    sourceCompatibility = '11'
+    targetCompatibility = '11'
+}
+
+subprojects {
+    repositories {
+        mavenCentral()
+    }
+
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+
+    group = 'fxplatform'
+
+    dependencies {
+        compile 'org.springframework.boot:spring-boot-starter-web',
+                'net.logstash.logback:logstash-logback-encoder:6.1',
+                'org.codehaus.janino:janino:3.0.6'
+
+        compileOnly 'org.projectlombok:lombok:1.18.10'
+
+        annotationProcessor 'org.projectlombok:lombok:1.18.10'
+
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    }
+
+    sourceSets {
+        main {
+            resources {
+                srcDir file('../shared_config/')
+            }
+        }
+    }
+}

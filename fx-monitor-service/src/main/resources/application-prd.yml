@@ -1,0 +1,7 @@
+monitor.fx:
+  pairs:
+    - AUDUSD
+    - AUDNZD
+    - AUDHKD
+    - AUDKRW
+    - AUDJPY

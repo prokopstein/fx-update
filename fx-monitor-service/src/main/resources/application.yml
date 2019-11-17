@@ -1,0 +1,15 @@
+server:
+  port: 2225
+  servlet:
+    context-path: /fx-monitor
+spring:
+  profiles.include: rabbitmq
+  cloud:
+    stream:
+      bindings:
+        monitor-out:
+          destination: fx.monitor
+          binder: rabbit_binder
+
+monitor.fx:
+  apiKey: ${API_KEY}

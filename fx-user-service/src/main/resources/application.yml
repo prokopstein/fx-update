@@ -1,0 +1,24 @@
+server:
+  port: 2226
+  servlet:
+    context-path: /fx-user
+spring:
+  profiles:
+    active: rabbitmq,mail
+  cloud:
+    stream:
+      bindings:
+        monitor-in:
+          destination: fx.monitor
+          binder: rabbit_binder
+
+monitor:
+  client:
+    email: ${CLIENT_EMAIL}
+    pairs:
+      - AUDUSD
+      - AUDNZD
+      - AUDHKD
+      - AUDKRW
+      - AUDJPY
+      - EUR

@@ -1,0 +1,5 @@
+API_KEY: api-key
+
+monitor.fx:
+  pairs:
+    - EUR
