@@ -17,7 +17,7 @@ Build monitor service:
 
 Run RabbitMQ:
 -------------
-1.cd infrastructure/rabbitmq
+1. cd infrastructure/rabbitmq
 2. docker-compose up
 
 Run user service:
