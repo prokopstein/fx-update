@@ -6,8 +6,8 @@ plugins {
 
 idea {
     project {
-        jdkName = '11'
-        languageLevel = '11'
+        jdkName = '8'
+        languageLevel = '8'
         vcs = 'Git'
     }
 }
@@ -17,8 +17,8 @@ allprojects {
     apply plugin: 'idea'
     apply plugin: 'java'
 
-    sourceCompatibility = '11'
-    targetCompatibility = '11'
+    sourceCompatibility = '8'
+    targetCompatibility = '8'
 }
 
 subprojects {

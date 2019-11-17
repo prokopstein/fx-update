@@ -1,7 +1,7 @@
 You need:
 ---------
-1. java 11
-2. docker
+1. java 8
+2. docker desktop
 
 Build user service:
 -------------------
@@ -17,7 +17,7 @@ Build monitor service:
 
 Run RabbitMQ:
 -------------
-1.cd infrastructure
+1.cd infrastructure/rabbitmq
 2. docker-compose up
 
 Run user service:
